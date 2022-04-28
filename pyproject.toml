@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "gbf_beautify_guild_war_honors"
+version = "0.1.0"
+description = "A tool to help you beautify Guild War honors"
+authors = ["qq88976321 <qq88976321@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+ortools = "^9.3.10497"
+
+[tool.poetry.dev-dependencies]
+isort = "^5.10.1"
+black = "^22.3.0"
+flake8 = "^4.0.1"
+pre-commit = "^2.18.1"
+gitlint = "^0.17.0"
+mypy = "^0.950"
+
+[tool.black]
+line-length = 160
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

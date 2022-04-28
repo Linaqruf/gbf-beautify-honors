@@ -1,0 +1,9 @@
+[general]
+ignore=body-is-missing
+
+# Enable community contributed rules
+# See http://jorisroovers.github.io/gitlint/contrib_rules for details
+contrib=contrib-title-conventional-commits
+
+[title-max-length]
+line-length=120

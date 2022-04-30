@@ -38,12 +38,16 @@ def fine_fune_honors(battle_honor_dict: Dict[str, Tuple[int, int]], expected_hon
 
     # The problem has an optimal solution.
     if result_status != pywraplp.Solver.OPTIMAL:
-        print("There is no solution to achieve the expected honors.")
+        print("There is no solution to achieve the expected honors. Please relax the constraints and try again.")
         return
 
     # The solution looks legit (when using solvers others than
     # GLOP_LINEAR_PROGRAMMING, verifying the solution is highly recommended!).
-    assert solver.VerifySolution(1e-7, True)
+    try:
+        assert solver.VerifySolution(1e-7, True)
+    except AssertionError:
+        print("Invalid solution. Please try again.")
+        return
 
     # The value of each variable in the solution.
     for variable in variable_list:
@@ -52,8 +56,12 @@ def fine_fune_honors(battle_honor_dict: Dict[str, Tuple[int, int]], expected_hon
 
 
 def main():
-    current_honors = int(input("Enter your current honors:  "))
-    expected_total_honors = int(input("Enter your expected honors: "))
+    try:
+        current_honors = int(input("Enter your current honors:  "))
+        expected_total_honors = int(input("Enter your expected honors: "))
+    except ValueError:
+        print("Please enter a valid integer.")
+        return
 
     expected_honors = expected_total_honors - current_honors
     print(f"Need {expected_honors} honors.\n")

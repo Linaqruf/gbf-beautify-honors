@@ -75,7 +75,7 @@ def main():
         # special case: use one summon can get 10 more honors
         "Wicked Rebel EX+ (1 summon)": (80800 + 10, max_acceptable_battles),
         # special case: some skills like break assasin that do not affect other players can get 1 honor
-        "Join raid and only use Break Assassin": (1, 1),
+        "Join raid and only use Break Assassin": (1, 10),
     }
 
     fine_fune_honors(battle_honor_dict, expected_honors)

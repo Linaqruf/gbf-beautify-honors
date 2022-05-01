@@ -1,26 +1,46 @@
 #!/usr/bin/env python3
+import click
 from ortools.init import pywrapinit
 
 from gbf_beautify_honors.action import Actions
 from gbf_beautify_honors.solver import solve
 
 
-def main():
-    try:
-        current_honors = int(input("Enter your current honors:  "))
-        expected_total_honors = int(input("Enter your expected honors: "))
-    except ValueError:
-        print("Please enter a valid integer.")
-        return
+@click.command()
+@click.option(
+    "--current",
+    "current_honors",
+    prompt="Your current honors ",
+    required=True,
+    type=int,
+    help="Your current honors",
+)
+@click.option(
+    "--expected",
+    "expected_honors",
+    prompt="Your expected honors",
+    required=True,
+    type=int,
+    help="Your expected honors",
+)
+@click.option(
+    "--config",
+    "config_path",
+    prompt="Custom config path",
+    required=False,
+    type=str,
+    help="Custom config path",
+    default="",
+)
+def main(current_honors, expected_honors, config_path):
+    init_or_tools()
 
-    expected_honors = expected_total_honors - current_honors
-    print(f"Need {expected_honors} honors.\n")
+    honors_diff = expected_honors - current_honors
+    click.echo(f"\nNeed {honors_diff} honors.\n")
 
-    # TODO: read config or use default settings
     actions = Actions()
 
-    if solve(actions, expected_honors):
-        print(actions)
+    solve(actions, honors_diff)
 
 
 def init_or_tools():
@@ -32,5 +52,4 @@ def init_or_tools():
 
 
 if __name__ == "__main__":
-    init_or_tools()
     main()

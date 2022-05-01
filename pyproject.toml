@@ -11,6 +11,8 @@ ortools = "^9.3.10497"
 tabulate = "^0.8.9"
 types-tabulate = "^0.8.8"
 click = "^8.0.3"
+dataclasses-json = "^0.5.7"
+wcwidth = "^0.2.5"
 
 [tool.poetry.dev-dependencies]
 isort = "^5.10.1"

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import json
+
 import click
 from ortools.init import pywrapinit
 
@@ -25,20 +27,25 @@ from gbf_beautify_honors.solver import solve
 )
 @click.option(
     "--config",
-    "config_path",
+    "custom_config_path",
     prompt="Custom config path",
     required=False,
-    type=str,
+    type=click.Path(),
     help="Custom config path",
     default="",
 )
-def main(current_honors, expected_honors, config_path):
+def main(current_honors, expected_honors, custom_config_path):
     init_or_tools()
 
-    honors_diff = expected_honors - current_honors
-    click.echo(f"\nNeed {honors_diff} honors.\n")
-
     actions = Actions()
+
+    # read custom config into actions object if needed
+    if custom_config_path:
+        with open(custom_config_path) as f:
+            actions_dict = json.load(f)
+            actions = Actions.from_dict(actions_dict)  # type: ignore
+
+    honors_diff = expected_honors - current_honors
 
     solve(actions, honors_diff)
 

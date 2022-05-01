@@ -20,6 +20,9 @@ pre-commit = "^2.18.1"
 gitlint = "^0.17.0"
 mypy = "^0.950"
 
+[tool.poetry.scripts]
+beautify_hornor = "gbf_beautify_honors.main:main"
+
 [tool.black]
 line-length = 160
 

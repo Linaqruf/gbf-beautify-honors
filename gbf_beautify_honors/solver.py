@@ -1,6 +1,6 @@
 from ortools.linear_solver import pywraplp
 
-from gbf_beautify_guild_war_honors.action import Actions
+from gbf_beautify_honors.action import Actions
 
 
 def solve(actions: Actions, expected_honors: int) -> bool:
@@ -42,7 +42,9 @@ def solve(actions: Actions, expected_honors: int) -> bool:
     # The solution looks legit (when using solvers others than
     # GLOP_LINEAR_PROGRAMMING, verifying the solution is highly recommended!).
     if not solver.VerifySolution(1e-7, True):
-        print("The solution returned by the solver violated the problem constraints by at least 1e-7. Please try again.")
+        print(
+            "The solution returned by the solver violated the problem constraints by at least 1e-7. Please try again."
+        )
         return False
 
     # The value of each variable in the solution.

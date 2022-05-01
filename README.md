@@ -38,7 +38,7 @@ $ poetry install
 
 ### Case 1: There is a solution
 ```python
-$ python gbf_beautify_guild_war_honors/main.py
+$ python gbf_beautify_honors/main.py
 Enter your current honors:  1398542611
 Enter your expected honors: 1400000000
 Need 1457389 honors.
@@ -55,7 +55,7 @@ Join raid and only use Break Assassin = 1
 Basically, there is always a solution because we can join raid and only use Break Assassin to get exactly 1 honor.
 However, this is usually an unrealistic approach, so the default config makes some constraints on the maximum time on each type of battle. This leads to the fact that sometimes it is not possible to find a solution.
 ```
-$ python gbf_beautify_guild_war_honors/main.py
+$ python gbf_beautify_honors/main.py
 Enter your current honors:  1399999900
 Enter your expected honors: 1400000000
 Need 100 honors.

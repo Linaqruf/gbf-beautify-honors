@@ -1,4 +1,4 @@
-from gbf_beautify_guild_war_honors import __version__
+from gbf_beautify_honors import __version__
 
 
 def test_version():

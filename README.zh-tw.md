@@ -36,7 +36,7 @@ $ poetry install
 
 ### Case 1: 直接找到答案
 ```python
-$ python gbf_beautify_guild_war_honors/main.py
+$ python gbf_beautify_honors/main.py
 Enter your current honors:  1398542611
 Enter your expected honors: 1400000000
 Need 1457389 honors.
@@ -53,7 +53,7 @@ Join raid and only use Break Assassin = 1
 因為我們可以透過參加其他人的戰鬥並放如 BK 斬等技能來取得 1 貢獻，理論上一定有辦法達到任何貢獻。然而這並不是一個很實際的方法，所以預設的 config 有加上每種戰鬥最多可接受場數的限制。但這也導致了有時候會有無解的狀況發生
 
 ```
-$ python gbf_beautify_guild_war_honors/main.py
+$ python gbf_beautify_honors/main.py
 Enter your current honors:  1399999900
 Enter your expected honors: 1400000000
 Need 100 honors.

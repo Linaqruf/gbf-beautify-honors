@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 from ortools.init import pywrapinit
 
-from gbf_beautify_guild_war_honors.action import Actions
-from gbf_beautify_guild_war_honors.solver import solve
+from gbf_beautify_honors.action import Actions
+from gbf_beautify_honors.solver import solve
 
 
 def main():

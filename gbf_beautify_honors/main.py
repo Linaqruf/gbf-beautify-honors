@@ -8,6 +8,14 @@ from gbf_beautify_honors.action import Actions
 from gbf_beautify_honors.solver import solve
 
 
+def init_or_tools():
+    pywrapinit.CppBridge.InitLogging("main.py")
+    cpp_flags = pywrapinit.CppFlags()
+    cpp_flags.logtostderr = True
+    cpp_flags.log_prefix = False
+    pywrapinit.CppBridge.SetFlags(cpp_flags)
+
+
 @click.command()
 @click.option(
     "--current",
@@ -48,14 +56,6 @@ def main(current_honors, expected_honors, custom_config_path):
     honors_diff = expected_honors - current_honors
 
     solve(actions, honors_diff)
-
-
-def init_or_tools():
-    pywrapinit.CppBridge.InitLogging("main.py")
-    cpp_flags = pywrapinit.CppFlags()
-    cpp_flags.logtostderr = True
-    cpp_flags.log_prefix = False
-    pywrapinit.CppBridge.SetFlags(cpp_flags)
 
 
 if __name__ == "__main__":

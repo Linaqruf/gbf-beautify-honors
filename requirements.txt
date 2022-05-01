@@ -81,3 +81,9 @@ protobuf==3.20.1 ; python_version >= "3.7" \
 six==1.16.0 ; python_version >= "3.6" \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926
+tabulate==0.8.9 \
+    --hash=sha256:d7c013fe7abbc5e491394e10fa845f8f32fe54f8dc60c6622c6cf482d25d47e4 \
+    --hash=sha256:eb1d13f25760052e8931f2ef80aaf6045a6cceb47514db8beab24cded16f13a7
+types-tabulate==0.8.8 \
+    --hash=sha256:0b319c7e10dd561f7c15f56dec347c3193fd865f4ebe5ff1ecb020eafa793bc3 \
+    --hash=sha256:628912bf968b449fc8603f5a92a45739d464da38a6eb25d9e0b78a353a6e584c

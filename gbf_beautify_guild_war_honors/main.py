@@ -1,19 +1,28 @@
 #!/usr/bin/env python3
-
-from typing import Dict, Tuple
+from typing import List
 
 from ortools.init import pywrapinit
 from ortools.linear_solver import pywraplp
+from tabulate import tabulate
 
 
-def fine_fune_honors(battle_honor_dict: Dict[str, Tuple[int, int]], expected_honors: int) -> None:
+class Action:
+    def __init__(self, name: str, honor: int, max_accepatable_times: int):
+        self.name = name
+        self.honor = honor
+        self.max_accepatable_times = max_accepatable_times
+        self.optimal_times = None
+
+
+def fine_fune_honors(actions: List[Action], expected_honors: int) -> bool:
     """Find an optimal way (if any) to achieve the expected honors with given battles.
 
     Args:
-        battle_honor_dict (Dict[str, Tuple[int, int]]): battle related infomation
-            key: battle name
-            value: tuple of (honor, the maximum acceptable number of this battle)
+        actions (List[Action]): action related information
         expected_honors (int): how many honors you want to get
+
+    Returns:
+        bool: find solution or not
     """
     solver = pywraplp.Solver.CreateSolver(solver_id="SAT")
 
@@ -25,11 +34,11 @@ def fine_fune_honors(battle_honor_dict: Dict[str, Tuple[int, int]], expected_hon
     constraint = solver.RowConstraint(expected_honors, expected_honors)
 
     variable_list = []
-    for battle_name, (honor, max_acceptable_battles) in battle_honor_dict.items():
-        variable = solver.IntVar(0, max_acceptable_battles, battle_name)
+    for action in actions:
+        variable = solver.IntVar(0, action.max_accepatable_times, action.name)
         variable_list.append(variable)
         objective.SetCoefficient(variable, 1)
-        constraint.SetCoefficient(variable, honor)
+        constraint.SetCoefficient(variable, action.honor)
 
     objective.SetMinimization()
 
@@ -39,20 +48,29 @@ def fine_fune_honors(battle_honor_dict: Dict[str, Tuple[int, int]], expected_hon
     # The problem has an optimal solution.
     if result_status != pywraplp.Solver.OPTIMAL:
         print("There is no solution to achieve the expected honors. Please relax the constraints and try again.")
-        return
+        return False
 
     # The solution looks legit (when using solvers others than
     # GLOP_LINEAR_PROGRAMMING, verifying the solution is highly recommended!).
-    try:
-        assert solver.VerifySolution(1e-7, True)
-    except AssertionError:
-        print("Invalid solution. Please try again.")
-        return
+    if not solver.VerifySolution(1e-7, True):
+        print("The solution returned by the solver violated the problem constraints by at least 1e-7. Please try again.")
+        return False
 
     # The value of each variable in the solution.
-    for variable in variable_list:
-        if variable.solution_value() > 0:
-            print(f"{variable.name()} = {variable.solution_value():.0f}")
+    for (i, variable) in enumerate(variable_list):
+        actions[i].optimal_times = variable.solution_value()
+
+    return True
+
+
+def print_actions(actions: List[Action]):
+    print(
+        tabulate(
+            [[a.name, a.honor, a.optimal_times] for a in actions],
+            ["Action", "Honor", "Optimal Times"],
+            tablefmt="fancy_grid",
+        )
+    )
 
 
 def main():
@@ -71,26 +89,26 @@ def main():
 
     # IMPORTANT: The honor shown below is for one turn kill without using skills and summons
     #            Special case: we have more chances to find the solution if we use sommon or skill
-    # key: battle name
-    # value: (honor, the maximum acceptable number of this battle)
-    battle_honor_dict: Dict[str, Tuple[int, int]] = {
-        "Eyeball N (0 button)": (4000, max_acceptable_battles),
-        "Eyeball H (0 button)": (6000, max_acceptable_battles),
-        "Eyeball VH (0 button)": (8000, max_acceptable_battles),
-        "Behemoth VH (0 button)": (21400, max_acceptable_battles),
-        "Wicked Rebel EX (0 button)": (50578, max_acceptable_battles),
-        "Wicked Rebel EX+ (0 button)": (80800, max_acceptable_battles),
-        # special case: use one summon can get 10 more honors
-        "Wicked Rebel EX+ (1 summon)": (80800 + 10, max_acceptable_battles),
-        # special case: some skills like break assasin that do not affect other players can get 1 honor
-        "Join raid and only use Break Assassin": (1, 10),
-    }
 
-    fine_fune_honors(battle_honor_dict, expected_honors)
+    actions = [
+        Action("Eyeball N (0 button)", 4000, max_acceptable_battles),
+        Action("Eyeball H (0 button)", 6000, max_acceptable_battles),
+        Action("Eyeball VH (0 button)", 8000, max_acceptable_battles),
+        Action("Meat Beast VH (0 button)", 21400, max_acceptable_battles),
+        Action("Meat Beast EX (0 button)", 50578, max_acceptable_battles),
+        Action("Meat Beast EX+ (0 button)", 80800, max_acceptable_battles),
+        # special case: use one summon can get 10 more honors
+        Action("Meat Beast EX+ (1 summon)", 80800 + 10, max_acceptable_battles),
+        # special case: some skills like break assasin that do not affect other players can get 1 honor
+        Action("Join raid and only use Break Assassin", 1, 10),
+    ]
+
+    if fine_fune_honors(actions, expected_honors):
+        print_actions(actions)
 
 
 def init_or_tools():
-    pywrapinit.CppBridge.InitLogging("tune_total_honors.py")
+    pywrapinit.CppBridge.InitLogging("main.py")
     cpp_flags = pywrapinit.CppFlags()
     cpp_flags.logtostderr = True
     cpp_flags.log_prefix = False

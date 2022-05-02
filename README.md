@@ -127,7 +127,7 @@ Custom config path []:
 Basically, there is always a solution because we can join raid and only use Break Assassin to get exactly 1 honor.
 However, this is usually an unrealistic approach, so the default config makes some constraints on the maximum time on each type of battle. This leads to the fact that sometimes it is not possible to find a solution.
 
-```
+```sh
 $ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000
@@ -155,7 +155,7 @@ Custom config path []: config.json
 
 The configuration is flexible and you can try to modify different values in it, re-run the script and see if there is a solution. You can also add self-defined action into the config.json as long as you know you can get the exact honor value from this action, e.g. you can add this object into the actions list,
 
-```
+```json
 {
     "name": "Some custom action for demo",
     "honor": 11,
@@ -165,7 +165,7 @@ The configuration is flexible and you can try to modify different values in it, 
 
 Re-run the script, it just works!
 
-```
+```sh
 $ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000

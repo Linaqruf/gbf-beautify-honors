@@ -126,7 +126,7 @@ Custom config path []:
 
 因為我們可以透過參加其他人的戰鬥並放如 BK 斬等技能來取得 1 貢獻，理論上一定有辦法達到任何貢獻。然而這並不是一個很實際的方法，所以預設的 config 有加上每種戰鬥最多可接受場數的限制。但這也導致了有時候會有無解的狀況發生
 
-```
+```sh
 $ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000
@@ -154,7 +154,7 @@ Custom config path []: config.json
 
 設定檔的配置是很靈活的，你可以嘗試調整設定檔內不同的數值，重新執行並確認是否有解。如果你發現某些自定義的行為可以穩定得獲得特定貢獻度，你也可以將其加入到設定檔內。例如：你可以試著將下列物件加入 `actions` list 中
 
-```
+```json
 {
     "name": "Some custom action for demo",
     "honor": 11,
@@ -164,7 +164,7 @@ Custom config path []: config.json
 
 再次執行工具可以看到他正常運作
 
-```
+```sh
 $ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000

@@ -20,7 +20,12 @@ lear# Granblue Fantasay - 古戰場修分
 
 ## How to install
 
-You can use `pip` to install this cli:
+建議使用 [pipx](https://pypa.github.io/pipx/) 來進行安裝，pipx 會將此工具安裝在一個獨立且乾淨的環境內。
+```sh
+$ pipx install gbf-beautify-honors
+```
+
+然而，仍然可以使用 pip 進行安裝。
 ```sh
 $ pip install gbf-beautify-honors
 ```

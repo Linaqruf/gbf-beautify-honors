@@ -17,7 +17,12 @@ Please read at least one of these well-written tutorials to known how to get the
 
 ## How to install
 
-You can use `pip` to install this cli:
+It is recommended to use [pipx](https://pypa.github.io/pipx/) to install this tool because the application will be installed into an isolated and clean environment.
+```sh
+$ pipx install gbf-beautify-honors
+```
+
+However, you still can use pip to install this cli.
 ```sh
 $ pip install gbf-beautify-honors
 ```

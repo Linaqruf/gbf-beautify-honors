@@ -4,6 +4,14 @@ version = "0.1.0"
 description = "A CLI tool to help you beautify Guild War honors"
 authors = ["qq88976321 <qq88976321@gmail.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/qq88976321/gbf-beautify-honors"
+repository = "https://github.com/qq88976321/gbf-beautify-honors"
+keywords = ["gbf", "grandblue fantasy"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Topic :: Games/Entertainment :: Role-Playing",
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"

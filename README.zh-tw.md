@@ -194,4 +194,4 @@ Custom config path []: config.json
 
 此外，我們可以加上額外的範圍限制到 n<sub>i</sub> 變數上以限制每種戰鬥最多可接受的場數。例如：
 
-![formula](https://render.githubusercontent.com/render/math?math=0%3C%3Dn_i%3C%3D10)
+![formula](https://render.githubusercontent.com/render/math?math=0%E2%89%A4n_i%E2%89%A410)

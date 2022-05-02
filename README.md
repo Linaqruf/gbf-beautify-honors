@@ -196,7 +196,7 @@ We want to get exact honors with minimum number of battles (more efficient), so 
 
 Additionally, we can add additional constriants to the integer variable n<sub>i</sub> to limit the maximum number of each battle. e.g.,
 
-![formula](https://render.githubusercontent.com/render/math?math=0%3C%3Dn_i%3C%3D10)
+![formula](https://render.githubusercontent.com/render/math?math=0%E2%89%A4n_i%E2%89%A410)
 
 ## How to develop
 

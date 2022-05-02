@@ -1,4 +1,5 @@
 # Granblue Fantasay - Beautify Honors
+
 A CLI tool to help you figure out how to beautify honors in the Guild War event. (古戦場の貢献度調整)
 
 Read this in other languages: [English](README.md), [中文](README.zh-tw.md).
@@ -6,32 +7,35 @@ Read this in other languages: [English](README.md), [中文](README.zh-tw.md).
 <!-- a hack for pypi homepage shoing assets/sample_result.png -->
 ![sample_result](https://raw.githubusercontent.com/qq88976321/gbf-beautify-honors/master/assets/sample_result.png)
 
-
 ## Table of contents
 <!--ts-->
 <!--te-->
 
 ## Prerequisites
+
 Please read at least one of these well-written tutorials to known how to get the exact honors.
+
 - [kamigame - 古戦場の貢献度調整のやり方](https://kamigame.jp/%E3%82%B0%E3%83%A9%E3%83%96%E3%83%AB/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88/%E6%B1%BA%E6%88%A6%EF%BC%81%E6%98%9F%E3%81%AE%E5%8F%A4%E6%88%A6%E5%A0%B4/%E8%B2%A2%E7%8C%AE%E5%BA%A6%E8%AA%BF%E6%95%B4.html)
 - [gbf.wiki - Beauty of Honor](https://gbf.wiki/User:Midokuni/Notepad/Beauty_of_Honor)
 - [巴哈姆特 - 古戰場修分大法(控分技巧)](https://forum.gamer.com.tw/C.php?bsn=25204&snA=11313)
 
 ## System requirements
+
 - Python 3.7+
 
 ## How to install
 
 It is recommended to use [pipx](https://pypa.github.io/pipx/) to install this tool because the application will be installed into an isolated and clean environment.
+
 ```sh
-$ pipx install gbf-beautify-honors
+pipx install gbf-beautify-honors
 ```
 
 However, you still can use pip to install this cli.
-```sh
-$ pip install gbf-beautify-honors
-```
 
+```sh
+pip install gbf-beautify-honors
+```
 
 ## How to use
 
@@ -50,6 +54,7 @@ Options:
 ```
 
 ### Interactive mode example
+
 ```sh
 $ gbf-beautify-honors
 Your current honors : 1398542611
@@ -58,15 +63,17 @@ Custom config path []:
 ```
 
 ### Direct mode example
+
 ```sh
-$ gbf-beautify-honors --current=1398542611 --expected=1400000000
+gbf-beautify-honors --current=1398542611 --expected=1400000000
 ```
 
-
 ## Examples
+
 Next, we will use some examples to explain how to use this tool, and how to adjust the configuration file.
 
 ### Case 1: There is a solution
+
 ```sh
 $ gbf-beautify-honors
 Your current honors : 1398542611
@@ -90,6 +97,7 @@ Custom config path []:
 ```
 
 Please note that there may be multiple solutions to the same input and there is currently no guarantee of consistent results. Another possibility is shown below:
+
 ```sh
 $ gbf-beautify-honors
 Your current honors : 1398542611
@@ -115,8 +123,10 @@ Custom config path []:
 ```
 
 ### Case 2: There is no solution
+
 Basically, there is always a solution because we can join raid and only use Break Assassin to get exactly 1 honor.
 However, this is usually an unrealistic approach, so the default config makes some constraints on the maximum time on each type of battle. This leads to the fact that sometimes it is not possible to find a solution.
+
 ```
 $ gbf-beautify-honors
 Your current honors : 1399999900
@@ -130,6 +140,7 @@ To solve this problem, we can use custom config to relax the constraints to find
 1. Download the example [config.json](example_configs/config.json).
 2. Modify the `max_accepatable_times` of the action "Join raid and only use Break Assassin" to `100`.
 3. Re-run the script with custom config.
+
 ```sh
 $ gbf-beautify-honors
 Your current honors : 1399999900
@@ -143,6 +154,7 @@ Custom config path []: config.json
 ```
 
 The configuration is flexible and you can try to modify different values in it, re-run the script and see if there is a solution. You can also add self-defined action into the config.json as long as you know you can get the exact honor value from this action, e.g. you can add this object into the actions list,
+
 ```
 {
     "name": "Some custom action for demo",
@@ -152,6 +164,7 @@ The configuration is flexible and you can try to modify different values in it, 
 ```
 
 Re-run the script, it just works!
+
 ```
 $ gbf-beautify-honors
 Your current honors : 1399999900
@@ -166,9 +179,8 @@ Custom config path []: config.json
 ╘═══════════════════════════════════════╧═════════╧═════════════════╛
 ```
 
-
-
 ## How it works
+
 We can formulate this problem as an integer programming problem and solve it using the [OR-Tools](https://developers.google.com/optimization)
 
 Is this case, we use an integer variable h<sub>i</sub> to represent the exact honor earned from battle `i` (`i` can be `Eyeball N`, `Wicked Rebel EX+`, ...).
@@ -186,16 +198,19 @@ Additionally, we can add additional constriants to the integer variable n<sub>i<
 
 ![formula](https://render.githubusercontent.com/render/math?math=0%3C%3Dn_i%3C%3D10)
 
-
 ## How to develop
+
 ### Setup
+
 Use `poetry` to setup dev environment.
+
 ```sh
-$ poetry install
-$ poetry shell
+poetry install
+poetry shell
 ```
 
 Use `pre-commit` hook to check coding style.
+
 ```sh
-$ pre-commit install -t commit-msg -t pre-commit
+pre-commit install -t commit-msg -t pre-commit
 ```

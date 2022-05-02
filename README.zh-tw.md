@@ -1,4 +1,4 @@
-lear# Granblue Fantasay - 古戰場修分
+# Granblue Fantasay - 古戰場修分
 規劃古戰場修分方法的 CLI 小工具
 
 其他語言版本: [English](README.md), [中文](README.zh-tw.md)

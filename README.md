@@ -183,7 +183,7 @@ Custom config path []: config.json
 
 We can formulate this problem as an integer programming problem and solve it using the [OR-Tools](https://developers.google.com/optimization)
 
-Is this case, we use an integer variable h<sub>i</sub> to represent the exact honor earned from battle `i` (`i` can be `Eyeball N`, `Wicked Rebel EX+`, ...).
+Is this case, we use an integer variable h<sub>i</sub> to represent the exact honor earned from battle `i` (`i` can be `Eyeball N`, `Meat Beast EX+`, ...).
 And use another integer variable n<sub>i</sub> to represent the number of battles we need to fight for the battle `i`.
 
 We want to get exact honors with minimum number of battles (more efficient), so the corresponding integer programming problem is:

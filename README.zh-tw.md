@@ -3,30 +3,26 @@ lear# Granblue Fantasay - 古戰場修分
 
 其他語言版本: [English](README.md), [中文](README.zh-tw.md)
 
-![sample_result](assets/sample_result.png)
+<!-- a hack for pypi homepage shoing assets/sample_result.png -->
+![sample_result](https://raw.githubusercontent.com/qq88976321/gbf-beautify-honors/master/assets/sample_result.png)
+
 
 ## Prerequisites
 請至少讀過以下至少一篇教學以獲得了解如何穩定得取得想要的貢獻度。
-- https://kamigame.jp/%E3%82%B0%E3%83%A9%E3%83%96%E3%83%AB/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88/%E6%B1%BA%E6%88%A6%EF%BC%81%E6%98%9F%E3%81%AE%E5%8F%A4%E6%88%A6%E5%A0%B4/%E8%B2%A2%E7%8C%AE%E5%BA%A6%E8%AA%BF%E6%95%B4.html
-- https://gbf.wiki/User:Midokuni/Notepad/Beauty_of_Honor
-- https://forum.gamer.com.tw/C.php?bsn=25204&snA=11313
+- [kamigame - 古戦場の貢献度調整のやり方](https://kamigame.jp/%E3%82%B0%E3%83%A9%E3%83%96%E3%83%AB/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88/%E6%B1%BA%E6%88%A6%EF%BC%81%E6%98%9F%E3%81%AE%E5%8F%A4%E6%88%A6%E5%A0%B4/%E8%B2%A2%E7%8C%AE%E5%BA%A6%E8%AA%BF%E6%95%B4.html)
+- [gbf.wiki - Beauty of Honor](https://gbf.wiki/User:Midokuni/Notepad/Beauty_of_Honor)
+- [巴哈姆特 - 古戰場修分大法(控分技巧)](https://forum.gamer.com.tw/C.php?bsn=25204&snA=11313)
 
 
 ## System requirements
 - Python 3.7+
 
 
-## Install requirements
-You can use `pip` or `poetry` to install requirements.
+## How to install
 
-### pip
+You can use `pip` to install this cli:
 ```sh
-$ pip install -r requirements.txt
-```
-
-### poetry
-```sh
-$ poetry install
+$ pip install gbf-beautify-honors
 ```
 
 ## How to use
@@ -34,8 +30,8 @@ $ poetry install
 2. 以 interactive mode 或 direct mode 執行 cli tool，以下是這個 tool 的 help page:
 
 ```sh
-$ python gbf_beautify_honors/main.py --help
-Usage: main.py [OPTIONS]
+$ gbf-beautify-honors --help
+Usage: gbf-beautify-honors [OPTIONS]
 
 Options:
   --current INTEGER   Your current honors  [required]
@@ -45,24 +41,24 @@ Options:
 ```
 
 ### Interactive mode example
-```python
-$ python gbf_beautify_honors/main.py
+```sh
+$ gbf-beautify-honors
 Your current honors : 1398542611
 Your expected honors: 1400000000
 Custom config path []:
 ```
 
 ### Direct mode example
-```python
-$ python gbf_beautify_honors/main.py --current=1398542611 --expected=1400000000
+```sh
+$ gbf-beautify-honors --current=1398542611 --expected=1400000000
 ```
 
 ## Examples
 接下來，我們使用幾個範例來說明如何使用這個工具，以及如何調整設定檔案。
 
 ### Case 1: 直接找到答案
-```python
-$ python gbf_beautify_honors/main.py
+```sh
+$ gbf-beautify-honors
 Your current honors : 1398542611
 Your expected honors: 1400000000
 Custom config path []:
@@ -83,11 +79,37 @@ Custom config path []:
 ╘═══════════════════════════════════════╧═════════╧═════════════════╛
 ```
 
+
+請注意同一個問題可能有多種解答，且目前不保證每次結果的一致性。另一種可能性如下所示：
+```sh
+$ gbf-beautify-honors
+Your current honors : 1398542611
+Your expected honors: 1400000000
+Custom config path []:
+╒═══════════════════════════════════════╤═════════╤═════════════════╕
+│ Action                                │   Honor │   Optimal Times │
+╞═══════════════════════════════════════╪═════════╪═════════════════╡
+│ Eyeball H (0 button)                  │    6000 │               3 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Eyeball VH (0 button)                 │    8000 │               3 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast VH (0 button)              │   21400 │               1 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX (0 button)              │   50578 │               2 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX+ (0 button)             │   80800 │              13 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX+ (1 summon)             │   80810 │               3 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Join raid and only use Break Assassin │       1 │               3 │
+╘═══════════════════════════════════════╧═════════╧═════════════════╛
+```
+
 ### Case 2: 無解
 因為我們可以透過參加其他人的戰鬥並放如 BK 斬等技能來取得 1 貢獻，理論上一定有辦法達到任何貢獻。然而這並不是一個很實際的方法，所以預設的 config 有加上每種戰鬥最多可接受場數的限制。但這也導致了有時候會有無解的狀況發生
 
 ```
-$ python gbf_beautify_honors/main.py
+$ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000
 Custom config path []:
@@ -101,7 +123,7 @@ There is no solution to achieve the expected honors. Please relax the constraint
 3. 以客製化的設定檔再次執行工具。
 <!-- FIXME: double-width characters alignment issue when using chinese? -->
 ```sh
-$ python gbf_beautify_honors/main.py
+$ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000
 Custom config path []: config.json
@@ -123,7 +145,7 @@ Custom config path []: config.json
 
 再次執行工具可以看到他正常運作
 ```
-$ python gbf_beautify_honors/main.py
+$ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000
 Custom config path []: config.json

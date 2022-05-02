@@ -3,32 +3,25 @@ A CLI tool to help you figure out how to beautify honors in the Guild War event.
 
 Read this in other languages: [English](README.md), [中文](README.zh-tw.md).
 
-
-![sample_result](assets/sample_result.png)
+<!-- a hack for pypi homepage shoing assets/sample_result.png -->
+![sample_result](https://raw.githubusercontent.com/qq88976321/gbf-beautify-honors/master/assets/sample_result.png)
 
 ## Prerequisites
 Please read at least one of these well-written tutorials to known how to get the exact honors.
-- https://kamigame.jp/%E3%82%B0%E3%83%A9%E3%83%96%E3%83%AB/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88/%E6%B1%BA%E6%88%A6%EF%BC%81%E6%98%9F%E3%81%AE%E5%8F%A4%E6%88%A6%E5%A0%B4/%E8%B2%A2%E7%8C%AE%E5%BA%A6%E8%AA%BF%E6%95%B4.html
-- https://gbf.wiki/User:Midokuni/Notepad/Beauty_of_Honor
-- https://forum.gamer.com.tw/C.php?bsn=25204&snA=11313
-
+- [kamigame - 古戦場の貢献度調整のやり方](https://kamigame.jp/%E3%82%B0%E3%83%A9%E3%83%96%E3%83%AB/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88/%E6%B1%BA%E6%88%A6%EF%BC%81%E6%98%9F%E3%81%AE%E5%8F%A4%E6%88%A6%E5%A0%B4/%E8%B2%A2%E7%8C%AE%E5%BA%A6%E8%AA%BF%E6%95%B4.html)
+- [gbf.wiki - Beauty of Honor](https://gbf.wiki/User:Midokuni/Notepad/Beauty_of_Honor)
+- [巴哈姆特 - 古戰場修分大法(控分技巧)](https://forum.gamer.com.tw/C.php?bsn=25204&snA=11313)
 
 ## System requirements
 - Python 3.7+
 
+## How to install
 
-## Install requirements
-You can use `pip` or `poetry` to install requirements.
-
-### pip
+You can use `pip` to install this cli:
 ```sh
-$ pip install -r requirements.txt
+$ pip install gbf-beautify-honors
 ```
 
-### poetry
-```sh
-$ poetry install
-```
 
 ## How to use
 
@@ -36,8 +29,8 @@ $ poetry install
 2. Run the cli tool in interactive mode or direct mode. Help page is simply shown below:
 
 ```sh
-$ python gbf_beautify_honors/main.py --help
-Usage: main.py [OPTIONS]
+$ gbf-beautify-honors --help
+Usage: gbf-beautify-honors [OPTIONS]
 
 Options:
   --current INTEGER   Your current honors  [required]
@@ -47,16 +40,16 @@ Options:
 ```
 
 ### Interactive mode example
-```python
-$ python gbf_beautify_honors/main.py
+```sh
+$ gbf-beautify-honors
 Your current honors : 1398542611
 Your expected honors: 1400000000
 Custom config path []:
 ```
 
 ### Direct mode example
-```python
-$ python gbf_beautify_honors/main.py --current=1398542611 --expected=1400000000
+```sh
+$ gbf-beautify-honors --current=1398542611 --expected=1400000000
 ```
 
 
@@ -64,8 +57,8 @@ $ python gbf_beautify_honors/main.py --current=1398542611 --expected=1400000000
 Next, we will use some examples to explain how to use this tool, and how to adjust the configuration file.
 
 ### Case 1: There is a solution
-```python
-$ python gbf_beautify_honors/main.py
+```sh
+$ gbf-beautify-honors
 Your current honors : 1398542611
 Your expected honors: 1400000000
 Custom config path []:
@@ -86,11 +79,36 @@ Custom config path []:
 ╘═══════════════════════════════════════╧═════════╧═════════════════╛
 ```
 
+Please note that there may be multiple solutions to the same input and there is currently no guarantee of consistent results. Another possibility is shown below:
+```sh
+$ gbf-beautify-honors
+Your current honors : 1398542611
+Your expected honors: 1400000000
+Custom config path []:
+╒═══════════════════════════════════════╤═════════╤═════════════════╕
+│ Action                                │   Honor │   Optimal Times │
+╞═══════════════════════════════════════╪═════════╪═════════════════╡
+│ Eyeball H (0 button)                  │    6000 │               3 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Eyeball VH (0 button)                 │    8000 │               3 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast VH (0 button)              │   21400 │               1 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX (0 button)              │   50578 │               2 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX+ (0 button)             │   80800 │              13 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX+ (1 summon)             │   80810 │               3 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Join raid and only use Break Assassin │       1 │               3 │
+╘═══════════════════════════════════════╧═════════╧═════════════════╛
+```
+
 ### Case 2: There is no solution
 Basically, there is always a solution because we can join raid and only use Break Assassin to get exactly 1 honor.
 However, this is usually an unrealistic approach, so the default config makes some constraints on the maximum time on each type of battle. This leads to the fact that sometimes it is not possible to find a solution.
 ```
-$ python gbf_beautify_honors/main.py
+$ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000
 Custom config path []:
@@ -103,7 +121,7 @@ To solve this problem, we can use custom config to relax the constraints to find
 2. Modify the `max_accepatable_times` of the action "Join raid and only use Break Assassin" to `100`.
 3. Re-run the script with custom config.
 ```sh
-$ python gbf_beautify_honors/main.py
+$ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000
 Custom config path []: config.json
@@ -125,7 +143,7 @@ The configuration is flexible and you can try to modify different values in it, 
 
 Re-run the script, it just works!
 ```
-$ python gbf_beautify_honors/main.py
+$ gbf-beautify-honors
 Your current honors : 1399999900
 Your expected honors: 1400000000
 Custom config path []: config.json

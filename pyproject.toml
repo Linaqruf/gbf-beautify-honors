@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "gbf-beautify-honors"
 version = "0.1.0"
-description = "A CLI tool to help you beautify Guild War honors"
+description = "A CLI tool to help you figure out how to beautify honors in the Guild War event."
 authors = ["qq88976321 <qq88976321@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -33,7 +33,7 @@ gitlint = "^0.17.0"
 mypy = "^0.950"
 
 [tool.poetry.scripts]
-gbf_beautify_honors = "gbf_beautify_honors.main:main"
+gbf-beautify-honors = "gbf_beautify_honors.main:main"
 
 [tool.black]
 line-length = 160

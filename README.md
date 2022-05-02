@@ -132,7 +132,7 @@ Custom config path []: config.json
 ╘═══════════════════════════════════════╧═════════╧═════════════════╛
 ```
 
-The configuration is flexible and you can try to modify different values in it, re-run the script and see if there is an solution. You can also add self-defined action into the config.json as long as you know you can get the exact honor value from this action, e.g. you can add this object into the actions list,
+The configuration is flexible and you can try to modify different values in it, re-run the script and see if there is a solution. You can also add self-defined action into the config.json as long as you know you can get the exact honor value from this action, e.g. you can add this object into the actions list,
 ```
 {
     "name": "Some custom action for demo",

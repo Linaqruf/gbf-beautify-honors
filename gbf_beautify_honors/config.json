@@ -1,0 +1,44 @@
+{
+    "actions": [
+        {
+            "name": "Eyeball N (0 button)",
+            "honor": 4000,
+            "max_accepatable_times": 10
+        },
+        {
+            "name": "Eyeball H (0 button)",
+            "honor": 6000,
+            "max_accepatable_times": 10
+        },
+        {
+            "name": "Eyeball VH (0 button)",
+            "honor": 8000,
+            "max_accepatable_times": 10
+        },
+        {
+            "name": "Meat Beast VH (0 button)",
+            "honor": 21400,
+            "max_accepatable_times": 30
+        },
+        {
+            "name": "Meat Beast EX (0 button)",
+            "honor": 50578,
+            "max_accepatable_times": 30
+        },
+        {
+            "name": "Meat Beast EX+ (0 button)",
+            "honor": 80800,
+            "max_accepatable_times": 30
+        },
+        {
+            "name": "Meat Beast EX+ (1 summon)",
+            "honor": 80810,
+            "max_accepatable_times": 30
+        },
+        {
+            "name": "Join raid and only use Break Assassin",
+            "honor": 1,
+            "max_accepatable_times": 10
+        }
+    ]
+}

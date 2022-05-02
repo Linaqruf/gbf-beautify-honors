@@ -12,6 +12,7 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Topic :: Games/Entertainment :: Role-Playing",
 ]
+include = ["example_configs/config.json"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -21,6 +22,7 @@ types-tabulate = "^0.8.8"
 click = "^8.0.3"
 dataclasses-json = "^0.5.7"
 wcwidth = "^0.2.5"
+types-setuptools = "^57.4.14"
 
 [tool.poetry.dev-dependencies]
 isort = "^5.10.1"
@@ -31,7 +33,7 @@ gitlint = "^0.17.0"
 mypy = "^0.950"
 
 [tool.poetry.scripts]
-beautify_hornor = "gbf_beautify_honors.main:main"
+gbf_beautify_honors = "gbf_beautify_honors.main:main"
 
 [tool.black]
 line-length = 160

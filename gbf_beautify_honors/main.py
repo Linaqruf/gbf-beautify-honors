@@ -2,6 +2,7 @@
 import json
 
 import click
+import pkg_resources
 from ortools.init import pywrapinit
 
 from gbf_beautify_honors.action import Actions
@@ -45,18 +46,18 @@ def init_or_tools():
 def main(current_honors, expected_honors, custom_config_path):
     init_or_tools()
 
-    actions = Actions()
-
-    # read custom config into actions object if needed
+    # TODO: code refine
+    config_path = ""
     if custom_config_path:
-        with open(custom_config_path) as f:
-            actions_dict = json.load(f)
-            actions = Actions.from_dict(actions_dict)  # type: ignore
+        config_path = custom_config_path
+    else:
+        config_path = pkg_resources.resource_filename(__name__, "config.json")
+
+    actions = Actions()
+    with open(config_path) as f:
+        actions_dict = json.load(f)
+        actions = Actions.from_dict(actions_dict)  # type: ignore
 
     honors_diff = expected_honors - current_honors
 
     solve(actions, honors_diff)
-
-
-if __name__ == "__main__":
-    main()

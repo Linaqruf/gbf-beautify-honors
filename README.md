@@ -1,5 +1,5 @@
 # Granblue Fantasay - Beautify Honors
-A tool to help you figure out how to beautify honors in the Guild War event. (古戦場の貢献度調整)
+A CLI tool to help you figure out how to beautify honors in the Guild War event. (古戦場の貢献度調整)
 
 Read this in other languages: [English](README.md), [中文](README.zh-tw.md).
 
@@ -33,22 +33,57 @@ $ poetry install
 ## How to use
 
 1. Solo the NM Bosses until the difference between your current honors and expected honors is roughly greater than one million. An appropriate gap is a good start because there may be a greater chance of finding a good way to achieve the goal.
-2. (WIP) (Optional) Edit the config.
-3. Run the script and enter your current honors and expected honors.
+2. Run the cli tool in interactive mode or direct mode. Help page is simply shown below:
+
+```sh
+$ python gbf_beautify_honors/main.py --help
+Usage: main.py [OPTIONS]
+
+Options:
+  --current INTEGER   Your current honors  [required]
+  --expected INTEGER  Your expected honors  [required]
+  --config PATH       Custom config path
+  --help              Show this message and exit.
+```
+
+### Interactive mode example
+```python
+$ python gbf_beautify_honors/main.py
+Your current honors : 1398542611
+Your expected honors: 1400000000
+Custom config path []:
+```
+
+### Direct mode example
+```python
+$ python gbf_beautify_honors/main.py --current=1398542611 --expected=1400000000
+```
+
+
+## Examples
+Next, we will use some examples to explain how to use this tool, and how to adjust the configuration file.
 
 ### Case 1: There is a solution
 ```python
 $ python gbf_beautify_honors/main.py
-Enter your current honors:  1398542611
-Enter your expected honors: 1400000000
-Need 1457389 honors.
-
-Eyeball VH (0 button) = 3
-Behemoth VH (0 button) = 7
-Wicked Rebel EX (0 button) = 11
-Wicked Rebel EX+ (0 button) = 6
-Wicked Rebel EX+ (1 summon) = 3
-Join raid and only use Break Assassin = 1
+Your current honors : 1398542611
+Your expected honors: 1400000000
+Custom config path []:
+╒═══════════════════════════════════════╤═════════╤═════════════════╕
+│ Action                                │   Honor │   Optimal Times │
+╞═══════════════════════════════════════╪═════════╪═════════════════╡
+│ Eyeball VH (0 button)                 │    8000 │               1 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast VH (0 button)              │   21400 │               4 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX (0 button)              │   50578 │               3 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX+ (0 button)             │   80800 │              10 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX+ (1 summon)             │   80810 │               5 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Join raid and only use Break Assassin │       1 │               5 │
+╘═══════════════════════════════════════╧═════════╧═════════════════╛
 ```
 
 ### Case 2: There is no solution
@@ -56,14 +91,52 @@ Basically, there is always a solution because we can join raid and only use Brea
 However, this is usually an unrealistic approach, so the default config makes some constraints on the maximum time on each type of battle. This leads to the fact that sometimes it is not possible to find a solution.
 ```
 $ python gbf_beautify_honors/main.py
-Enter your current honors:  1399999900
-Enter your expected honors: 1400000000
-Need 100 honors.
-
-There is no solution to achieve the expected honors.
+Your current honors : 1399999900
+Your expected honors: 1400000000
+Custom config path []:
+There is no solution to achieve the expected honors. Please relax the constraints and try again.
 ```
 
-(WIP) To solve this problem, we can adjust the settings to relax the constraints to find a solution.
+To solve this problem, we can use custom config to relax the constraints to find a solution.
+
+1. Download the example [config.json](example_configs/config.json).
+2. Modify the `max_accepatable_times` of the action "Join raid and only use Break Assassin" to `100`.
+3. Re-run the script with custom config.
+```sh
+$ python gbf_beautify_honors/main.py
+Your current honors : 1399999900
+Your expected honors: 1400000000
+Custom config path []: config.json
+╒═══════════════════════════════════════╤═════════╤═════════════════╕
+│ Action                                │   Honor │   Optimal Times │
+╞═══════════════════════════════════════╪═════════╪═════════════════╡
+│ Join raid and only use Break Assassin │       1 │             100 │
+╘═══════════════════════════════════════╧═════════╧═════════════════╛
+```
+
+The configuration is flexible and you can try to modify different values in it, re-run the script and see if there is an solution. You can also add self-defined action into the config.json as long as you know you can get the exact honor value from this action, e.g. you can add this object into the actions list,
+```
+{
+    "name": "Some custom action for demo",
+    "honor": 11,
+    "max_accepatable_times": 10
+}
+```
+
+Re-run the script, it just works!
+```
+$ python gbf_beautify_honors/main.py
+Your current honors : 1399999900
+Your expected honors: 1400000000
+Custom config path []: config.json
+╒═══════════════════════════════════════╤═════════╤═════════════════╕
+│ Action                                │   Honor │   Optimal Times │
+╞═══════════════════════════════════════╪═════════╪═════════════════╡
+│ Join raid and only use Break Assassin │       1 │               1 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Some custom action for demo           │      11 │               9 │
+╘═══════════════════════════════════════╧═════════╧═════════════════╛
+```
 
 
 

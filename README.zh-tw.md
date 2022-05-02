@@ -1,5 +1,5 @@
-# Granblue Fantasay - 古戰場修分
-規劃古戰場修分方法的小工具
+lear# Granblue Fantasay - 古戰場修分
+規劃古戰場修分方法的 CLI 小工具
 
 其他語言版本: [English](README.md), [中文](README.zh-tw.md)
 
@@ -31,22 +31,56 @@ $ poetry install
 
 ## How to use
 1. 打 hell boss 直到距離目標差距約一百萬貢獻。適當的差距可以讓我們有更大的機會找到一個比較容易達成的方式。
-2. (WIP) (Optional) 調整 config
-3. 執行 script 並根據提示輸入目前貢獻度及目標貢獻度
+2. 以 interactive mode 或 direct mode 執行 cli tool，以下是這個 tool 的 help page:
+
+```sh
+$ python gbf_beautify_honors/main.py --help
+Usage: main.py [OPTIONS]
+
+Options:
+  --current INTEGER   Your current honors  [required]
+  --expected INTEGER  Your expected honors  [required]
+  --config PATH       Custom config path
+  --help              Show this message and exit.
+```
+
+### Interactive mode example
+```python
+$ python gbf_beautify_honors/main.py
+Your current honors : 1398542611
+Your expected honors: 1400000000
+Custom config path []:
+```
+
+### Direct mode example
+```python
+$ python gbf_beautify_honors/main.py --current=1398542611 --expected=1400000000
+```
+
+## Examples
+接下來，我們使用幾個範例來說明如何使用這個工具，以及如何調整設定檔案。
 
 ### Case 1: 直接找到答案
 ```python
 $ python gbf_beautify_honors/main.py
-Enter your current honors:  1398542611
-Enter your expected honors: 1400000000
-Need 1457389 honors.
-
-Eyeball VH (0 button) = 3
-Behemoth VH (0 button) = 7
-Wicked Rebel EX (0 button) = 11
-Wicked Rebel EX+ (0 button) = 6
-Wicked Rebel EX+ (1 summon) = 3
-Join raid and only use Break Assassin = 1
+Your current honors : 1398542611
+Your expected honors: 1400000000
+Custom config path []:
+╒═══════════════════════════════════════╤═════════╤═════════════════╕
+│ Action                                │   Honor │   Optimal Times │
+╞═══════════════════════════════════════╪═════════╪═════════════════╡
+│ Eyeball VH (0 button)                 │    8000 │               1 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast VH (0 button)              │   21400 │               4 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX (0 button)              │   50578 │               3 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX+ (0 button)             │   80800 │              10 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Meat Beast EX+ (1 summon)             │   80810 │               5 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Join raid and only use Break Assassin │       1 │               5 │
+╘═══════════════════════════════════════╧═════════╧═════════════════╛
 ```
 
 ### Case 2: 無解
@@ -54,14 +88,53 @@ Join raid and only use Break Assassin = 1
 
 ```
 $ python gbf_beautify_honors/main.py
-Enter your current honors:  1399999900
-Enter your expected honors: 1400000000
-Need 100 honors.
-
-There is no solution to achieve the expected honors.
+Your current honors : 1399999900
+Your expected honors: 1400000000
+Custom config path []:
+There is no solution to achieve the expected honors. Please relax the constraints and try again.
 ```
 
-(WIP) 為了解決這個問題，我們可以調整 config 設定，放寬場數上限來找到解答。
+為了解決這個問題，我們可以調整 config 設定，放寬限制來找到解答。
+
+1. 下載範例的 [config.json](example_configs/config.json) 或中文版本的 [config.zh-tw.json](example_configs/config.zh-tw.json)。
+2. 修改 "Join raid and only use Break Assassin" action 的 `max_accepatable_times` 為 `100`。
+3. 以客製化的設定檔再次執行工具。
+<!-- FIXME: double-width characters alignment issue when using chinese? -->
+```sh
+$ python gbf_beautify_honors/main.py
+Your current honors : 1399999900
+Your expected honors: 1400000000
+Custom config path []: config.json
+╒═══════════════════════════════════════╤═════════╤═════════════════╕
+│ Action                                │   Honor │   Optimal Times │
+╞═══════════════════════════════════════╪═════════╪═════════════════╡
+│ Join raid and only use Break Assassin │       1 │             100 │
+╘═══════════════════════════════════════╧═════════╧═════════════════╛
+```
+
+設定檔的配置是很靈活的，你可以嘗試調整設定檔內不同的數值，重新執行並確認是否有解。如果你發現某些自定義的行為可以穩定得獲得特定貢獻度，你也可以將其加入到設定檔內。例如：你可以試著將下列物件加入 `actions` list 中
+```
+{
+    "name": "Some custom action for demo",
+    "honor": 11,
+    "max_accepatable_times": 10
+}
+```
+
+再次執行工具可以看到他正常運作
+```
+$ python gbf_beautify_honors/main.py
+Your current honors : 1399999900
+Your expected honors: 1400000000
+Custom config path []: config.json
+╒═══════════════════════════════════════╤═════════╤═════════════════╕
+│ Action                                │   Honor │   Optimal Times │
+╞═══════════════════════════════════════╪═════════╪═════════════════╡
+│ Join raid and only use Break Assassin │       1 │               1 │
+├───────────────────────────────────────┼─────────┼─────────────────┤
+│ Some custom action for demo           │      11 │               9 │
+╘═══════════════════════════════════════╧═════════╧═════════════════╛
+```
 
 
 ## 原理

@@ -42,7 +42,6 @@ class Actions:
         return self.actions[index]
 
     def __str__(self):
-        tabulate.WIDE_CHARS_MODE = True
         return tabulate(
             [[action.name, action.honor, action.optimal_times] for action in self.actions if action.optimal_times != 0],
             ["Action", "Honor", "Optimal Times"],

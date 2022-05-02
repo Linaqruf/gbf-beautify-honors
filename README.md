@@ -9,6 +9,20 @@ Read this in other languages: [English](README.md), [中文](README.zh-tw.md).
 
 ## Table of contents
 <!--ts-->
+* [Granblue Fantasay - Beautify Honors](README.md#granblue-fantasay---beautify-honors)
+   * [Table of contents](README.md#table-of-contents)
+   * [Prerequisites](README.md#prerequisites)
+   * [System requirements](README.md#system-requirements)
+   * [How to install](README.md#how-to-install)
+   * [How to use](README.md#how-to-use)
+      * [Interactive mode example](README.md#interactive-mode-example)
+      * [Direct mode example](README.md#direct-mode-example)
+   * [Examples](README.md#examples)
+      * [Case 1: There is a solution](README.md#case-1-there-is-a-solution)
+      * [Case 2: There is no solution](README.md#case-2-there-is-no-solution)
+   * [How it works](README.md#how-it-works)
+   * [How to develop](README.md#how-to-develop)
+      * [Setup](README.md#setup)
 <!--te-->
 
 ## Prerequisites

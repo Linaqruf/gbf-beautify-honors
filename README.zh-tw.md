@@ -9,6 +9,18 @@
 
 ## Table of contents
 <!--ts-->
+* [Granblue Fantasay - 古戰場修分](README.zh-tw.md#granblue-fantasay---古戰場修分)
+   * [Table of contents](README.zh-tw.md#table-of-contents)
+   * [Prerequisites](README.zh-tw.md#prerequisites)
+   * [System requirements](README.zh-tw.md#system-requirements)
+   * [How to install](README.zh-tw.md#how-to-install)
+   * [How to use](README.zh-tw.md#how-to-use)
+      * [Interactive mode example](README.zh-tw.md#interactive-mode-example)
+      * [Direct mode example](README.zh-tw.md#direct-mode-example)
+   * [Examples](README.zh-tw.md#examples)
+      * [Case 1: 直接找到答案](README.zh-tw.md#case-1-直接找到答案)
+      * [Case 2: 無解](README.zh-tw.md#case-2-無解)
+   * [原理](README.zh-tw.md#原理)
 <!--te-->
 
 ## Prerequisites

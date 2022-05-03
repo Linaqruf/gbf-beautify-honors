@@ -13,3 +13,5 @@ version:
 	@git add pyproject.toml
 	@git commit -m "chore: Bumping version to $$(poetry version -s)"
 	@git tag "$$(poetry version -s)"
+	@echo
+	@echo "Please run 'git push --follow-tags' to update remote."

@@ -1,5 +1,5 @@
 # ref: https://github.com/ekalinin/github-markdown-toc#toc-generation-with-github-actions
-name: auto update markdown table of contents
+name: Auto update markdown table of contents
 on:
   push:
     branches: [master]

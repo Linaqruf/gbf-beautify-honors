@@ -11,7 +11,6 @@ class Action:
     name: str
     honor: int
     max_accepatable_times: int
-    optimal_times: int = field(init=False)
 
 
 @dataclass_json
@@ -25,9 +24,27 @@ class Actions:
     def __getitem__(self, index):
         return self.actions[index]
 
-    def __str__(self):
-        return tabulate(
-            [[action.name, action.honor, action.optimal_times] for action in self.actions if action.optimal_times != 0],
-            ["Action", "Honor", "Optimal Times"],
-            tablefmt="fancy_grid",
+
+@dataclass
+class OptimalAction(Action):
+    optimal_times: int
+
+
+@dataclass
+class OptimalActions:
+    optimal_actions: List[OptimalAction] = field(default_factory=list)
+
+    def __iter__(self):
+        return iter(self.optimal_actions)
+
+    def __getitem__(self, index):
+        return self.optimal_actions[index]
+
+    def pretty_print(self):
+        print(
+            tabulate(
+                [[action.name, action.honor, action.optimal_times] for action in self.optimal_actions if action.optimal_times != 0],
+                ["Action", "Honor", "Optimal Times"],
+                tablefmt="fancy_grid",
+            )
         )

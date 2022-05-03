@@ -6,6 +6,7 @@ import pkg_resources
 from ortools.init import pywrapinit
 
 from gbf_beautify_honors.action import Actions
+from gbf_beautify_honors.exception import NoSolutionError
 from gbf_beautify_honors.solver import solve
 
 
@@ -60,4 +61,10 @@ def main(current_honors, expected_honors, custom_config_path):
 
     honors_diff = expected_honors - current_honors
 
-    solve(actions, honors_diff)
+    try:
+        optimal_acitons = solve(actions, honors_diff)
+        optimal_acitons.pretty_print()
+    except NoSolutionError as e:
+        print(e)
+    except Exception:
+        raise

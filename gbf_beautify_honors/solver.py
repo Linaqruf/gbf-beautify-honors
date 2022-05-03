@@ -39,13 +39,11 @@ def solve(actions: Actions, honors_diff: int) -> None:
     # The solution looks legit (when using solvers others than
     # GLOP_LINEAR_PROGRAMMING, verifying the solution is highly recommended!).
     if not solver.VerifySolution(1e-7, True):
-        print(
-            "The solution returned by the solver violated the problem constraints by at least 1e-7. Please try again."
-        )
+        print("The solution returned by the solver violated the problem constraints by at least 1e-7. Please try again.")
         return
 
     # The value of each variable in the solution.
-    for (i, variable) in enumerate(variable_list):
+    for i, variable in enumerate(variable_list):
         actions[i].optimal_times = variable.solution_value()
 
     # Print the solution

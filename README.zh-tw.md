@@ -1,5 +1,10 @@
 # Granblue Fantasay - 古戰場修分
 
+![PyPI - Package Version](https://img.shields.io/pypi/v/gbf-beautify-honors)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gbf-beautify-honors)
+![PyPI - Status](https://img.shields.io/pypi/status/gbf-beautify-honors)
+![PyPI - License](https://img.shields.io/pypi/l/gbf-beautify-honors)
+
 規劃古戰場修分方法的 CLI 小工具
 
 其他語言版本: [English](README.md), [中文](README.zh-tw.md)

@@ -1,5 +1,10 @@
 # Granblue Fantasay - Beautify Honors
 
+![PyPI - Package Version](https://img.shields.io/pypi/v/gbf-beautify-honors)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gbf-beautify-honors)
+![PyPI - Status](https://img.shields.io/pypi/status/gbf-beautify-honors)
+![PyPI - License](https://img.shields.io/pypi/l/gbf-beautify-honors)
+
 A CLI tool to help you figure out how to beautify honors in the Guild War event. (古戦場の貢献度調整)
 
 Read this in other languages: [English](README.md), [中文](README.zh-tw.md).

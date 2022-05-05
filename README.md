@@ -14,7 +14,7 @@ Read this in other languages: [English](README.md), [中文](README.zh-tw.md).
 
 ## Table of contents
 <!--ts-->
-* [Granblue Fantasay - Beautify Honors](README.md#granblue-fantasay---beautify-honors)
+* [Granblue Fantasy - Beautify Honors](README.md#granblue-fantasy---beautify-honors)
    * [Table of contents](README.md#table-of-contents)
    * [Prerequisites](README.md#prerequisites)
    * [System requirements](README.md#system-requirements)

@@ -10,7 +10,7 @@ from tabulate import tabulate
 class Action:
     name: str
     honor: int
-    max_accepatable_times: int
+    max_acceptable_times: int
 
 
 @dataclass_json

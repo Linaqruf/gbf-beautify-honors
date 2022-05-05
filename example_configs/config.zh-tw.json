@@ -3,42 +3,42 @@
         {
             "name": "0鍵 N眼球",
             "honor": 4000,
-            "max_accepatable_times": 10
+            "max_acceptable_times": 10
         },
         {
             "name": "0鍵 H眼球",
             "honor": 6000,
-            "max_accepatable_times": 10
+            "max_acceptable_times": 10
         },
         {
             "name": "0鍵 VH眼球",
             "honor": 8000,
-            "max_accepatable_times": 10
+            "max_acceptable_times": 10
         },
         {
             "name": "0鍵 VH牛",
             "honor": 21400,
-            "max_accepatable_times": 30
+            "max_acceptable_times": 30
         },
         {
             "name": "0鍵 EX牛",
             "honor": 50578,
-            "max_accepatable_times": 30
+            "max_acceptable_times": 30
         },
         {
             "name": "0鍵 EX+牛",
             "honor": 80800,
-            "max_accepatable_times": 30
+            "max_acceptable_times": 30
         },
         {
             "name": "1召喚+直接攻擊 EX+牛",
             "honor": 80810,
-            "max_accepatable_times": 30
+            "max_acceptable_times": 30
         },
         {
             "name": "參加其他人的戰鬥並只放 BK 斬",
             "honor": 1,
-            "max_accepatable_times": 10
+            "max_acceptable_times": 10
         }
     ]
 }

@@ -154,7 +154,7 @@ There is no solution to achieve the expected honors. Please relax the constraint
 為了解決這個問題，我們可以調整 config 設定，放寬限制來找到解答。
 
 1. 下載範例的 [config.json](example_configs/config.json) 或中文版本的 [config.zh-tw.json](example_configs/config.zh-tw.json)。
-2. 修改 "Join raid and only use Break Assassin" action 的 `max_accepatable_times` 為 `100`。
+2. 修改 "Join raid and only use Break Assassin" action 的 `max_acceptable_times` 為 `100`。
 3. 以客製化的設定檔再次執行工具。
 <!-- FIXME: double-width characters alignment issue when using chinese? -->
 ```sh
@@ -175,7 +175,7 @@ Custom config path []: config.json
 {
     "name": "Some custom action for demo",
     "honor": 11,
-    "max_accepatable_times": 10
+    "max_acceptable_times": 10
 }
 ```
 

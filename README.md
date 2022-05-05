@@ -1,4 +1,4 @@
-# Granblue Fantasay - Beautify Honors
+# Granblue Fantasy - Beautify Honors
 
 ![PyPI - Package Version](https://img.shields.io/pypi/v/gbf-beautify-honors)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gbf-beautify-honors)
@@ -9,7 +9,7 @@ A CLI tool to help you figure out how to beautify honors in the Guild War event.
 
 Read this in other languages: [English](README.md), [中文](README.zh-tw.md).
 
-<!-- a hack for pypi homepage shoing assets/sample_result.png -->
+<!-- a hack for pypi homepage showing assets/sample_result.png -->
 ![sample_result](https://raw.githubusercontent.com/qq88976321/gbf-beautify-honors/master/assets/sample_result.png)
 
 ## Table of contents
@@ -157,7 +157,7 @@ There is no solution to achieve the expected honors. Please relax the constraint
 To solve this problem, we can use custom config to relax the constraints to find a solution.
 
 1. Download the example [config.json](example_configs/config.json).
-2. Modify the `max_accepatable_times` of the action "Join raid and only use Break Assassin" to `100`.
+2. Modify the `max_acceptable_times` of the action "Join raid and only use Break Assassin" to `100`.
 3. Re-run the script with custom config.
 
 ```sh
@@ -178,7 +178,7 @@ The configuration is flexible and you can try to modify different values in it, 
 {
     "name": "Some custom action for demo",
     "honor": 11,
-    "max_accepatable_times": 10
+    "max_acceptable_times": 10
 }
 ```
 
@@ -213,7 +213,7 @@ We want to get exact honors with minimum number of battles (more efficient), so 
 <!-- Subject\ to\ \displaystyle\sum_{i} h_i\times n_i -->
 ![formula](https://render.githubusercontent.com/render/math?math=Subject%5C%20to%5C%20%5Cdisplaystyle%5Csum_%7Bi%7D%20h_i%5Ctimes%20n_i%20%3D%20expected%5C_honor)
 
-Additionally, we can add additional constriants to the integer variable n<sub>i</sub> to limit the maximum number of each battle. e.g.,
+Additionally, we can add additional constraints to the integer variable n<sub>i</sub> to limit the maximum number of each battle. e.g.,
 
 ![formula](https://render.githubusercontent.com/render/math?math=0%E2%89%A4n_i%E2%89%A410)
 

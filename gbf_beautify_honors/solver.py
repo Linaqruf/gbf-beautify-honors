@@ -23,7 +23,7 @@ def solve(actions: Actions, honors_diff: int) -> OptimalActions:
 
     variable_list = []
     for action in actions:
-        variable = solver.IntVar(0, action.max_accepatable_times, action.name)
+        variable = solver.IntVar(0, action.max_acceptable_times, action.name)
         variable_list.append(variable)
         objective.SetCoefficient(variable, 1)
         constraint.SetCoefficient(variable, action.honor)
@@ -44,6 +44,6 @@ def solve(actions: Actions, honors_diff: int) -> OptimalActions:
 
     # The value of each variable in the solution.
     for i, variable in enumerate(variable_list):
-        optimal_action_list.append(OptimalAction(actions[i].name, actions[i].honor, actions[i].max_accepatable_times, variable.solution_value()))
+        optimal_action_list.append(OptimalAction(actions[i].name, actions[i].honor, actions[i].max_acceptable_times, variable.solution_value()))
 
     return OptimalActions(optimal_action_list)

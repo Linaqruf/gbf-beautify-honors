@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gbf-beautify-honors"
-version = "0.1.2"
+version = "0.1.3"
 description = "A CLI tool to help you figure out how to beautify honors in the Guild War event."
 authors = ["qq88976321 <qq88976321@gmail.com>"]
 license = "MIT"

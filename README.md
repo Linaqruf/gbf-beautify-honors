@@ -40,7 +40,7 @@ Please read at least one of these well-written tutorials to known how to get the
 
 ## System requirements
 
-- Python 3.7+
+- Python 3.8+
 
 ## How to install
 

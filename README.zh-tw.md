@@ -38,7 +38,7 @@
 
 ## System requirements
 
-- Python 3.7+
+- Python 3.8+
 
 ## How to install
 

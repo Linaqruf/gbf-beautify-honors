@@ -15,7 +15,7 @@ classifiers = [
 include = ["example_configs/config.json"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 ortools = "^9.3.10497"
 tabulate = "^0.8.9"
 types-tabulate = "^0.8.8"
@@ -23,6 +23,7 @@ click = "^8.0.3"
 dataclasses-json = "^0.5.7"
 wcwidth = "^0.2.5"
 types-setuptools = "^57.4.14"
+numpy = "^1.23.0"
 
 [tool.poetry.dev-dependencies]
 isort = "^5.10.1"

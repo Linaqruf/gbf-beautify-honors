@@ -7,11 +7,6 @@
         },
         {
             "name": "Eyeball H (0 button)",
-            "honor": 6000,
-            "max_acceptable_times": 10
-        },
-        {
-            "name": "Eyeball VH (0 button)",
             "honor": 8000,
             "max_acceptable_times": 10
         },
@@ -31,7 +26,7 @@
             "max_acceptable_times": 30
         },
         {
-            "name": "Meat Beast EX+ (1 summon)",
+            "name": "Meat Beast EX+ (1 summon + attack)",
             "honor": 80810,
             "max_acceptable_times": 30
         },
